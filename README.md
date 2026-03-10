@@ -19,7 +19,7 @@ O projeto foi criado para treinar lógica de programação,
 
 - HTML5
 - CSS3
-- JavaScript (Vanilla)
+- JavaScript
 
 ---
 ## 📱 Responsividade
@@ -38,14 +38,4 @@ https://joaowerner-dev.github.io/Jogo-da-Forca/
 
 ---
 
-## ✨ Objetivo do projeto
-
-Projeto desenvolvido para fins educacionais, com foco em aprendizado e prática de desenvolvimento.
-
----
-
-## 👤 Autor
-
-**João Werner**  
-Estudante de ADS PUC
 
