@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saúde da Pele 60+ • Cuidados e Prevenção • Vida Saudável 60+</title>
+  <meta name="description" content="Cuidados com a pele na melhor idade: mudanças do envelhecimento, proteção solar, hidratação, banho e produtos. Conteúdo fiel ao texto fornecido." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root{ font-size:18px; }
+
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    body.easy-read{
+      background:#fff !important; color:#000 !important;
+      font-size:1.18rem; line-height:2; letter-spacing:.2px;
+    }
+
+    .a11y-row{
+      margin-top:.75rem;
+    }
+
+    .a11y-inner{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      padding-top:.4rem;
+      border-top:1px solid rgba(0,0,0,.12);
+    }
+
+    .btn-a11y, .audio-btn{
+      border:1px solid rgba(0,0,0,.12);
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow:0 3px 8px rgba(0,0,0,.05);
+    }
+
+    .btn-a11y:hover, .audio-btn:hover{ transform:translateY(-1px); }
+    .btn-a11y:focus, .audio-btn:focus{ outline:3px solid rgba(255,122,0,.25); outline-offset:2px; }
+
+    .a11y-sep{
+      width:1px; height:32px; background:rgba(0,0,0,.12); margin:0 2px;
+    }
+
+    .font-hint{
+      font-size:14px; opacity:.75; margin-left:6px;
+    }
+
+    #easyReadBtn{
+      position:fixed; left:16px; bottom:16px; z-index:999;
+      border:0; border-radius:999px;
+      background:#ffd633; color:#000;
+      font-weight:800;
+      padding:.65rem 1rem;
+      box-shadow:0 8px 18px rgba(0,0,0,.12);
+      cursor:pointer;
+    }
+
+    .video-wrap{
+      position:relative; width:100%; aspect-ratio:16/9;
+      background:#000; border-radius:14px; overflow:hidden;
+    }
+
+    .video-wrap iframe{
+      position:absolute; inset:0; width:100%; height:100%; border:0;
+    }
+
+    .video-actions{ margin-top:10px; }
+    .video-actions a{ text-decoration:underline; font-weight:600; }
+    .audio-toolbar{ margin:0 0 12px; }
+
+    @media (max-width:768px){
+      .btn-a11y, .audio-btn{ padding:9px 10px; }
+      .a11y-inner{ gap:8px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="progressBar" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="index.html" aria-label="Página inicial Vida Saudável 60+">
+        <span class="brand-badge" aria-hidden="true">60+</span>
+        <div class="brand-text">
+          <h1>Portal saude 60+</h1>
+          <p>Saúde • Alimentação • Dicas • Jogos</p>
+        </div>
+      </a>
+
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="topNav" aria-label="Abrir menu" type="button">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav id="topNav" class="top-nav" aria-label="Navegação principal">
+        <a href="index.html#noticias">Notícias</a>
+        <a href="index.html#jogos">Jogos</a>
+        <a href="index.html#videos">Vídeos</a>
+        <a href="index.html#dicas">Dicas</a>
+        <a href="index.html#sobre">Sobre</a>
+      </nav>
+    </div>
+
+    <div class="container a11y-row" role="region" aria-label="Acessibilidade e leitura em áudio">
+      <div class="a11y-inner">
+        <button class="btn-a11y" id="fontDec" type="button" aria-label="Diminuir tamanho da letra">A-</button>
+        <button class="btn-a11y" id="fontInc" type="button" aria-label="Aumentar tamanho da letra">A+</button>
+        <button class="btn-a11y" id="fontReset" type="button" aria-label="Voltar tamanho padrão">Padrão</button>
+        <span class="font-hint" id="fontHint" aria-live="polite"></span>
+
+        <span class="a11y-sep" aria-hidden="true"></span>
+
+        <button class="btn-a11y" id="ttsPlayPage" type="button" aria-label="Ouvir a página inteira">🔊 Ouvir página</button>
+        <button class="btn-a11y" id="ttsPause" type="button" aria-label="Pausar ou continuar leitura">⏸ Pausar</button>
+        <button class="btn-a11y" id="ttsStop" type="button" aria-label="Parar leitura">⏹ Parar</button>
+        <small id="ttsStatus" class="sr-only" aria-live="polite"></small>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <small id="dataHoje" class="hero-date" aria-live="polite"></small>
+        <h2>Saúde da <span>Pele</span> na Melhor Idade</h2>
+        <p>Conteúdo fiel ao texto enviado: por que a pele envelhece, como se proteger do sol, hidratar e escolher produtos adequados — para conforto e prevenção de lesões.</p>
+
+        <div class="audio-toolbar">
+          <button class="audio-btn" type="button" data-section="page-all">🔊 Ouvir a página inteira</button>
+        </div>
+
+        <nav class="toc" aria-label="Sumário desta página">
+          <strong>Sumário</strong>
+          <ul>
+            <li><a href="#introducao">Introdução</a></li>
+            <li><a href="#video-pele">Vídeo: Cuidado com a pele</a></li>
+            <li><a href="#mudancas">Mudanças com o envelhecimento</a></li>
+            <li><a href="#fatores">Fatores que influenciam</a></li>
+            <li><a href="#fps">Proteção solar (FPS)</a></li>
+            <li><a href="#banho-produtos">Banho, hidratação e produtos</a></li>
+            <li><a href="#familia">Para idosos, família e cuidadores</a></li>
+            <li><a href="#referencias">Referências</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <aside class="alerta" role="note" aria-label="Aviso importante">
+        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+        <div>
+          <h3>Informação, não diagnóstico</h3>
+          <p>Este material é educativo e não substitui consulta médica. Feridas que não cicatrizam, manchas que mudam, coceira persistente ou queimadura solar importante exigem avaliação profissional.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <section id="introducao" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="introducao">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-heart"></i> Introdução</h3>
+      <p>Quando se trata sobre saúde da pele, poucas pessoas dizem saber como cuidar da pele de maneira adequada, sendo assim, quando há pouco cuidado com a saúde dermatológica, pode-se dizer que a pele envelhece mal, devido à falta de tratamento, cuidados necessários e importantes a pele.</p>
+    </section>
+
+    <section id="video-pele" class="section container" aria-labelledby="titulo-video-pele">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="video-pele">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 id="titulo-video-pele" class="section-title">
+        <i class="fa-brands fa-youtube" aria-hidden="true"></i> Vídeo: Cuidado com a pele
+      </h3>
+
+      <div class="video-wrap" role="region" aria-label="Player do YouTube: Cuidado com a pele">
+        <iframe
+          title="Cuidado com a pele — vídeo"
+          src="https://www.youtube-nocookie.com/embed/8r7b6RFdFXo?rel=0&modestbranding=1"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p class="video-actions">
+        <a href="https://www.youtube.com/watch?v=8r7b6RFdFXo" target="_blank" rel="noopener">Abrir no YouTube</a>
+      </p>
+    </section>
+
+    <section id="mudancas" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="mudancas">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-regular fa-face-smile"></i> Mudanças com o envelhecimento</h3>
+      <p>Com o envelhecimento, a camada externa da pele fica mais fina, pálida e menos elástica (elástina). Como os vasos sanguíneos ficam mais frágeis com a idade, os adultos mais velhos tendem a sofrer hematomas com mais facilidade. Além disso, pessoas de idade mais avançadas podem produzir menos suor e oleosidade nas glândulas da pele, causando menos hidratação.</p>
+    </section>
+
+    <section id="fatores" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="fatores">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-circle-nodes"></i> Fatores que influenciam a pele</h3>
+      <p>Há diversos fatores aos quais o envelhecimento influencia na pele. Há as alterações que acontecem devido a idade, como a perda de fibras elásticas e colágeno, com isso fazendo que a pele pareça mais velha, haja o desenvolvimento de rugas e fazer com que a pele fique mais frágil. Pode ocorrer também alterações hormonais, e através de certas condições crônicas de saúde como diabetes, doença renal doença cardíaca e aterosclerose.</p>
+      <p>Há também a exposição indiscriminada ao sol, que contribui ainda mais para o envelhecimento da pele através da emissão de raios ultravioleta (UV), que pode danificar células da pele. A curto prazo, a exposição ao sol pode ocasionar queimaduras solares e a longo prazo poderá ocorrer alterações na textura da pele e até mesmo o desenvolvimento do câncer de pele.</p>
+    </section>
+
+    <section id="fps" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="fps">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-sun"></i> Proteção solar (FPS)</h3>
+      <p>Ao observar estudos, nota-se que os idosos em sua maioria sabem que o uso do Filtro de Proteção Solar (FPS) é importante, porém mesmo sabendo de sua importância, eles não fazem uso regular do FPS, notando-se uma parcela bem pequena que faz uso diário. Um detalhe muito importante é que mesmo em dias nublados, onde parece que os raios solares não estão incidindo, há a necessidade de uso.</p>
+    </section>
+
+    <section id="banho-produtos" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="banho-produtos">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-shower"></i> Banho, hidratação e produtos</h3>
+      <p>Muito importante lembrar também que durante o dia e após o banho, deve-se haver a hidratação da pele. Durante o banho deve evitar a água quente, pois resseca a pele e remove a oleosidade natural. Deve-se evitar também o uso de buchas e escovas na pele senil, devido a sua fragilidade e delicadeza, podendo o uso levar a lesões.</p>
+      <p>Outro cuidado que se deve tomar é em relação ao uso de sabonetes, sendo desaconselhado o uso de sabonetes em barra, que geralmente possuem pH entre 9 e 10 e evitar também sabões antissépticos, sendo recomendados sabonetes com pH ácido. O idoso deve também fazer muita ingestão de líquidos e manter em dia as consultas com o dermatologista. Para a pele seca pode-se adicionar ao ambiente um umidificador para a redução de coceiras e para que a pele não fique tão ressecada.</p>
+    </section>
+
+    <section id="familia" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="familia">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-people-roof"></i> Para idosos, família e cuidadores</h3>
+      <p>Essas informações devem ser levadas em conta caso o idoso, familiares ou cuidadores que queiram saber mais a respeito dos cuidados relacionados da pele e assim, usar das diversas formas de prevenção ainda mais novo, mas preservando mais ainda a saúde do idoso ao qual preza-se como objetivo principal.</p>
+    </section>
+
+    <section id="referencias" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="referencias">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-book"></i> Referências</h3>
+      <ol class="refs">
+        <li>
+          NATIONAL INSTITUTE ON AGING. <em>Skin Care and Aging</em>. Disponível em:
+          <a class="doi" href="https://www.nia.nih.gov/health/skin-care/skin-care-and-aging" target="_blank" rel="noopener">https://www.nia.nih.gov/health/skin-care/skin-care-and-aging</a>.
+          Acesso em: 07 out. 2025.
+        </li>
+        <li>
+          GARBACCIO, J. L.; FERREIRA, A. D.; PEREIRA, L. G. G. Conhecimento e prática referidos por idosos no autocuidado com a pele no Centro-Oeste de Minas Gerais.
+          <em>Revista Brasileira de Geriatria e Gerontologia</em>, Rio de Janeiro, v. 1, n. 1, p. 45-194, dez. 2016.
+          DOI: <a class="doi" href="https://doi.org/10.1590/1809-9823.2016.14237" target="_blank" rel="noopener">10.1590/1809-9823.2016.14237</a>.
+          Disponível em:
+          <a class="doi" href="https://www.scielo.br/j/rbgg/a/MZTxb7vmbDv7mdPsfXfGrcj/?lang=pt" target="_blank" rel="noopener">SciELO</a>.
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <button id="toTop" class="to-top" aria-label="Voltar ao topo" type="button">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <button id="easyReadBtn" type="button" aria-label="Ativar modo leitura fácil">👁️ Leitura Fácil</button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="anoAtual"></span> <Portal> Portal saude 60+</Portal>. Conteúdo educativo.</p>
+    </div>
+  </footer>
+
+   <script src="script.js"></script>>
+</body>
+</html>

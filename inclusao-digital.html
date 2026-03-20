@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Como a tecnologia, a inclusão digital e a cidadania fortalecem a autonomia, a participação social e a qualidade de vida das pessoas idosas." />
+  <meta name="author" content="Projeto Vida Saudável 60+" />
+  <title>Inclusão Digital no Envelhecimento Ativo • Vida Saudável 60+</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root { font-size: 18px; }
+    body { line-height: 1.75; }
+
+    .a11y-bar{
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border, #e6e6e6);
+    }
+
+    .a11y-inner{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      padding:10px 0;
+    }
+
+    .btn-a11y{
+      border:1px solid var(--border, #e6e6e6);
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow: var(--shadow, 0 10px 22px rgba(0,0,0,.08));
+    }
+
+    .btn-a11y:focus{
+      outline:3px solid rgba(12,107,95,.25);
+      outline-offset:2px;
+    }
+
+    .a11y-sep{
+      width:1px;
+      height:32px;
+      background:var(--border, #e6e6e6);
+      margin:0 2px;
+    }
+
+    .font-hint{
+      font-size:14px;
+      opacity:.75;
+      margin-left:6px;
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    .audio-toolbar{
+      margin:10px 0 14px;
+    }
+
+    .audio-btn{
+      border:1px solid var(--border, #e6e6e6);
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow: var(--shadow, 0 10px 22px rgba(0,0,0,.08));
+    }
+
+    .audio-btn:focus{
+      outline:3px solid rgba(12,107,95,.25);
+      outline-offset:2px;
+    }
+
+    .video-wrap{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:16px;
+      overflow:hidden;
+      background:#000;
+    }
+
+    .video-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progressBar" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-flex">
+      <a class="brand" href="index.html#noticias" aria-label="Página inicial Portal saude 60+">
+        <span class="brand-badge" aria-hidden="true">60+</span>
+        <div class="brand-text">
+          <h1>Portal saude 60+</h1>
+          <p>Saúde • Movimento • Longevidade</p>
+        </div>
+      </a>
+
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="topNav" aria-label="Abrir menu" type="button">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav id="topNav" class="top-nav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#envelhecimento-ativo">Envelhecimento ativo</a>
+        <a href="#inclusao-saude">Inclusão na saúde</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#ta-mobilidade">Tecnologias assistivas</a>
+        <a href="#estatuto">Estatuto</a>
+        <a href="#cidadania">Cidadania</a>
+        <a href="#curatela">Curatela</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="a11y-bar" role="region" aria-label="Acessibilidade: tamanho da letra e leitura em áudio">
+    <div class="container a11y-inner">
+      <button class="btn-a11y" id="fontDec" type="button" aria-label="Diminuir tamanho da letra">A-</button>
+      <button class="btn-a11y" id="fontInc" type="button" aria-label="Aumentar tamanho da letra">A+</button>
+      <button class="btn-a11y" id="fontReset" type="button" aria-label="Voltar tamanho padrão">Padrão</button>
+      <span class="font-hint" id="fontHint" aria-live="polite"></span>
+
+      <span class="a11y-sep" aria-hidden="true"></span>
+
+      <button class="btn-a11y" id="ttsPlayPage" type="button" aria-label="Ouvir a página inteira">🔊 Ouvir página</button>
+      <button class="btn-a11y" id="ttsPause" type="button" aria-label="Pausar ou continuar leitura">⏸ Pausar</button>
+      <button class="btn-a11y" id="ttsStop" type="button" aria-label="Parar leitura">⏹ Parar</button>
+
+      <small id="ttsStatus" class="sr-only" aria-live="polite"></small>
+    </div>
+  </div>
+
+  <section class="section container" style="padding-top:20px; padding-bottom:0;">
+    <a class="btn btn-light" href="index.html#noticias">← Voltar para a página inicial</a>
+  </section>
+
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <small id="dataHoje" class="hero-date" aria-live="polite"></small>
+        <h2>Inclusão Digital no <span>Envelhecimento Ativo</span></h2>
+        <p>Como a tecnologia, os direitos digitais e a cidadania transformam o envelhecer em uma jornada de autonomia, participação e qualidade de vida.</p>
+
+        <div class="audio-toolbar">
+          <button class="audio-btn" type="button" data-section="page-all">🔊 Ouvir a página inteira</button>
+        </div>
+
+        <nav class="toc" aria-label="Sumário desta página">
+          <strong>Sumário</strong>
+          <ul>
+            <li><a href="#intro">Introdução</a></li>
+            <li><a href="#envelhecimento-ativo">O que é envelhecimento ativo</a></li>
+            <li><a href="#inclusao-saude">Inclusão digital na saúde</a></li>
+            <li><a href="#videos">Vídeos</a></li>
+            <li><a href="#ta-mobilidade">Tecnologias assistivas</a></li>
+            <li><a href="#estatuto">Estatuto da Pessoa Idosa</a></li>
+            <li><a href="#cidadania">Participação social e cidadania</a></li>
+            <li><a href="#autonomia-pilar">Autonomia</a></li>
+            <li><a href="#curatela">Curatela</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <aside class="alerta">
+        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+        <div>
+          <h3>Atenção</h3>
+          <p>Conteúdo educativo e informativo. Para avaliação médica, fisioterapêutica, jurídica ou social individual, procure profissionais qualificados.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <section id="intro" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="intro">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-paragraph" aria-hidden="true"></i> Inclusão digital no envelhecimento ativo</h3>
+      <p>O aumento da expectativa de vida e o desejo por longevidade com qualidade de vida é um ideal para todos. O envelhecimento ativo é o processo de otimizar oportunidades para saúde, participação e segurança, a fim de realçar a qualidade de vida.</p>
+      <p>A tecnologia e a inclusão digital são ferramentas poderosas que ajudam a viver essa fase com mais autonomia e bem-estar.</p>
+    </section>
+
+    <section id="envelhecimento-ativo" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="envelhecimento-ativo">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-seedling" aria-hidden="true"></i> O que é envelhecimento ativo?</h3>
+      <p>Envelhecer ativamente não se restringe a ser fisicamente ativo ou estar na força de trabalho. Significa continuar o engajamento continuado na vida.</p>
+      <p>Para as pessoas idosas, um envelhecimento ativo envolve determinantes de caráter comportamental, social, econômico e pessoal.</p>
+
+      <ul class="list">
+        <li><strong>Participação social:</strong> dialogar, conversar, ter amizade e convívio social.</li>
+        <li><strong>Saúde física e mental:</strong> praticar atividades físicas e ter alimentação saudável.</li>
+        <li><strong>Mente ativa:</strong> ocupar o tempo livre com atividades prazerosas e exercitar a memória.</li>
+        <li><strong>Autonomia:</strong> manter independência funcional para realizar atividades diárias.</li>
+      </ul>
+    </section>
+
+    <section id="inclusao-saude" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="inclusao-saude">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-notes-medical" aria-hidden="true"></i> A inclusão digital na saúde</h3>
+      <p>Em um mundo altamente digital, o acesso à informação é um princípio ético importante. As tecnologias facilitam o acompanhamento da saúde e ampliam recursos para compreender e atuar nas questões de cuidado.</p>
+
+      <ol class="list">
+        <li><strong>Acompanhar a saúde:</strong> compreender melhor informações e orientações.</li>
+        <li><strong>Ter registros:</strong> usar plataformas digitais para registrar e acompanhar dados importantes.</li>
+      </ol>
+    </section>
+
+    <section id="videos" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="videos">🔊 Ouvir este tópico</button>
+      </div>
+
+      <div class="section-head">
+        <h3 class="section-title"><i class="fa-solid fa-video" aria-hidden="true"></i> Vídeos explicativos</h3>
+      </div>
+
+      <div class="video-grid">
+        <article class="card">
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/jjG1j-Wn6ZE"
+              title="Vídeo 1 - Inclusão Digital no Envelhecimento Ativo"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h4>Inclusão digital no envelhecimento ativo</h4>
+            <p>Vídeo educativo sobre inclusão digital e envelhecimento ativo.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/Bz9CJr90Oo8"
+              title="Vídeo 2 - Inclusão Digital e Autonomia"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h4>Inclusão digital e autonomia</h4>
+            <p>Vídeo complementar sobre tecnologia e cidadania digital na terceira idade.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="ta-mobilidade" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="ta-mobilidade">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-person-cane" aria-hidden="true"></i> Tecnologias assistivas na marcha e locomoção</h3>
+      <p>A capacidade funcional para realizar atividades básicas e instrumentais da vida diária é crucial para a manutenção de uma vida independente e autônoma. A capacidade de locomoção é uma das dimensões da capacidade funcional e é essencial para o envelhecimento ativo.</p>
+
+      <p>Mais de um terço das pessoas idosas sofrem pelo menos uma queda por ano. As quedas podem levar a ferimentos, incapacidade e medo de cair.</p>
+
+      <ul class="list">
+        <li><strong>Recuperação e manutenção da autonomia:</strong> recuperar ou manter a máxima independência funcional.</li>
+        <li><strong>Permanência no lar:</strong> adaptações e ambiente propício com apoio de tecnologia assistiva.</li>
+        <li><strong>Prevenção de quedas:</strong> fortalecimento, equilíbrio e adaptações em casa e na comunidade.</li>
+      </ul>
+
+      <p>A tecnologia assistiva na mobilidade prolonga a independência, reduz o risco de acidentes e assegura autonomia no dia a dia.</p>
+    </section>
+
+    <section id="estatuto" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="estatuto">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Estatuto da Pessoa Idosa e promoção da autonomia</h3>
+      <p>O Estatuto da Pessoa Idosa assegura ao cidadão com 60+ a efetivação de direitos fundamentais, como saúde, dignidade, liberdade e respeito.</p>
+      <p>Nenhuma pessoa idosa pode sofrer negligência, discriminação, violência, crueldade ou opressão, e violações são punidas na forma da lei.</p>
+    </section>
+
+    <section id="cidadania" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="cidadania">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-users" aria-hidden="true"></i> Participação social e cidadania</h3>
+      <p>A autonomia é o direito à autodeterminação, mantendo dignidade e liberdade de escolha. O idoso deve ser reconhecido como ator social e cidadão capaz de participar de decisões e políticas.</p>
+
+      <ul class="list">
+        <li><strong>Lazer e inclusão social:</strong> convívio, cultura e atividades recreativas.</li>
+        <li><strong>Valorização da história e autoestima:</strong> restaurar papéis e sentido.</li>
+        <li><strong>Intergeracionalidade:</strong> convivência entre gerações reduz preconceito.</li>
+        <li><strong>Empoderamento pelo conhecimento:</strong> alfabetização e letramento digital e midiático.</li>
+      </ul>
+    </section>
+
+    <section id="autonomia-pilar" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="autonomia-pilar">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> A autonomia como pilar ético e legal</h3>
+      <p>A autonomia representa o direito da pessoa idosa à autodeterminação, dignidade e liberdade de escolha, sendo objetivo central das políticas públicas.</p>
+      <p>A principal ameaça é o paternalismo e a superproteção, que podem subtrair o poder de decisão e aumentar a dependência.</p>
+    </section>
+
+    <section id="curatela" class="section container">
+      <div class="audio-toolbar">
+        <button class="audio-btn" type="button" data-section="curatela">🔊 Ouvir este tópico</button>
+      </div>
+
+      <h3 class="section-title"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Curatela (tutela legal)</h3>
+      <p>A curatela é um processo judicial aplicado somente quando um idoso é considerado incapaz de gerir sua vida e bens. A justiça nomeia um curador para decisões, visando proteção.</p>
+      <p>É uma medida séria que restringe direitos civis e prevê punições para abuso de poder.</p>
+    </section>
+  </main>
+
+  <button id="toTop" class="to-top" aria-label="Voltar ao topo" type="button">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <button id="easyReadBtn" aria-label="Ativar modo leitura fácil" type="button">
+    👁️ Leitura Fácil
+  </button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="anoAtual"></span> Portal saude 60+. Conteúdo educativo.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
